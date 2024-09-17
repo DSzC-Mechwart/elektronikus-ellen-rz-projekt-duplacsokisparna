@@ -23,5 +23,15 @@ namespace ElektronikusEllenőrzőProjekt
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if(!(String.IsNullOrEmpty(HFN.Text)))
+            {
+                HBWindow hb = new HBWindow(HFN.Text);
+                hb.Show();
+                Close();
+            }
+        }
     }
 }
