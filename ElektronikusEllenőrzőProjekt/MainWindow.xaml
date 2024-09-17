@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="david" Content="Dávid" Height="41" Width="112" Click="david_Click"/>
+            <Button x:Name="kende" Grid.Column="1" Content="Kende" Height="41" Width="112" Click="kende_Click"/>
+            <Button x:Name="kristof" Grid.Column="2" Content="Kristóf" Height="41" Width="112" Click="kristof_Click"/>
+        </Grid>
 
     </Grid>
 </Window>

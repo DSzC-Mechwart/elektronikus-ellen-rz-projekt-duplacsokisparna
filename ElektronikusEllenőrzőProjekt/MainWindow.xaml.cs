@@ -20,5 +20,23 @@ namespace ElektronikusEllenőrzőProjekt
         {
             InitializeComponent();
         }
+
+        private void david_Click(object sender, RoutedEventArgs e)
+        {
+            DWindow dw = new DWindow();
+            dw.Show();
+        }
+
+        private void kende_Click(object sender, RoutedEventArgs e)
+        {
+            KWindow kw = new KWindow();
+            kw.Show();
+        }
+
+        private void kristof_Click(object sender, RoutedEventArgs e)
+        {
+            HWindow hw = new HWindow();
+            hw.Show();
+        }
     }
 }
