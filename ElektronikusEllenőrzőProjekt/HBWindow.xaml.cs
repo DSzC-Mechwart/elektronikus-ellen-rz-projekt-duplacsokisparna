@@ -22,8 +22,12 @@ namespace ElektronikusEllenőrzőProjekt
         public HBWindow(string HFNev)
         {
             InitializeComponent();
-            WindowState = WindowState.Maximized;
             HNameDisplay.Content = HFNev;
+        }
+
+        private void HCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
