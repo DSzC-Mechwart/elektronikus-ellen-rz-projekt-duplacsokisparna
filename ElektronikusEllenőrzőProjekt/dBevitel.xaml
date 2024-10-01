@@ -21,20 +21,20 @@
         <Label Content="Születési hely: " HorizontalAlignment="Left" Margin="70,90,0,0" VerticalAlignment="Top"/>
         <Label Content="Napló sorozatszám: " HorizontalAlignment="Left" Margin="70,330,0,0" VerticalAlignment="Top"/>
         <Label Content="Törzslapszám:&#xD;&#xA;&#x9;" HorizontalAlignment="Left" Margin="500,330,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="cBevitMentes" Content="Mentés" HorizontalAlignment="Left" Margin="690,389,0,0" VerticalAlignment="Top" Width="72"/>
+        <Button x:Name="cBevitMentes" Content="Mentés" HorizontalAlignment="Left" Margin="690,389,0,0" VerticalAlignment="Top" Width="72" Click="cBevitMentes_Click"/>
         <Button x:Name="cBevitVissza" Content="Vissza" HorizontalAlignment="Left" Margin="70,389,0,0" VerticalAlignment="Top" Width="75" Click="cBevitVissza_Click"/>
-        <TextBox HorizontalAlignment="Left" Margin="149,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <CheckBox Content="Kollégista-e" HorizontalAlignment="Left" Margin="502,217,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="154,154,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="157,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="187,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="122,274,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="144,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="554,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="630,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="541,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="570,274,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="587,334,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Ctnev" HorizontalAlignment="Left" Margin="149,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <CheckBox Content="Kollégista-e" x:Name="Ckollegista" HorizontalAlignment="Left" Margin="502,217,0,0" VerticalAlignment="Top" Checked="kollegista_Checked" Unchecked="kollegista_Unchecked" />
+        <TextBox x:Name="Cszulido" HorizontalAlignment="Left" Margin="154,154,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Cszulhely" HorizontalAlignment="Left" Margin="157,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="naploszam" HorizontalAlignment="Left" Margin="187,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Clakcim" HorizontalAlignment="Left" Margin="122,274,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Canya" HorizontalAlignment="Left" Margin="144,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Cosztaly" HorizontalAlignment="Left" Margin="554,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Cbeirido" HorizontalAlignment="Left" Margin="630,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Cszak" HorizontalAlignment="Left" Margin="541,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="570,274,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" x:Name="Ckollegium"/>
+        <TextBox x:Name="Ctorzsszam" HorizontalAlignment="Left" Margin="587,334,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
