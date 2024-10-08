@@ -24,9 +24,10 @@ namespace ElektronikusEllenőrzőProjekt
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void cBevitel_Click(object sender, RoutedEventArgs e)
         {
-
+            dBevitel win = new dBevitel();
+            win.Show();
         }
     }
 }
