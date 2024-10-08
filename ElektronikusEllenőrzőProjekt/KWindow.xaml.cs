@@ -23,5 +23,6 @@ namespace ElektronikusEllenőrzőProjekt
         {
             InitializeComponent();
         }
+
     }
 }
