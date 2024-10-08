@@ -10,8 +10,8 @@ namespace ElektronikusEllenőrzőProjekt
 {
     internal class c_Read_Bevit
     {
-        public c_Read_Bevit(string nev, string szulhely, int szulido, string anyanev, string lakcim, int naploszam, DateTime beiratkozas, string szak, string osztaly, 
-          bool  kollegista, string kollegium, int torszszam)
+        public c_Read_Bevit(string nev, string szulhely, DateTime szulido, string anyanev, string lakcim, int naploszam, DateTime beiratkozas, string szak, string osztaly, 
+          string  kollegista, string kollegium, int torszszam)
         {
             Nev = nev;
             Szulhely = szulhely;
@@ -29,14 +29,14 @@ namespace ElektronikusEllenőrzőProjekt
 
         public string Nev { get; set; }
         public string Szulhely { get; set; }
-        public int Szulido { get; set; }
+        public DateTime Szulido { get; set; }
         public string Anyanev { get; set; } 
         public string Lakcim { get; set; }
         public int Naploszam {get; set; }
         public DateTime Beiratkozas { get; set; }
         public string Szak { get; set; }    
         public string Osztaly { get; set; }
-        public bool Kollegista { get; set; }
+        public string Kollegista { get; set; }
         public string Kollegium { get; set; }
         public int Torszszam { get; set; }
 

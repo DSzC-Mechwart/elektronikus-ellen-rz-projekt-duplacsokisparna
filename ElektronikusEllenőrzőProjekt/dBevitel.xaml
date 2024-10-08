@@ -5,7 +5,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:ElektronikusEllenőrzőProjekt"
     mc:Ignorable="d"
-    Title="Bevitel" Height="450" Width="800">
+    Title="Bevitel" Height="450" Width="800" Background="LightBlue">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,7 +27,7 @@
         <CheckBox Content="Kollégista-e" x:Name="Ckollegista" HorizontalAlignment="Left" Margin="502,217,0,0" VerticalAlignment="Top" Checked="kollegista_Checked" Unchecked="kollegista_Unchecked" />
         <TextBox x:Name="Cszulido" HorizontalAlignment="Left" Margin="154,154,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Cszulhely" HorizontalAlignment="Left" Margin="157,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="naploszam" HorizontalAlignment="Left" Margin="187,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Cnaploszam" HorizontalAlignment="Left" Margin="187,333,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Clakcim" HorizontalAlignment="Left" Margin="122,274,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Canya" HorizontalAlignment="Left" Margin="144,214,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Cosztaly" HorizontalAlignment="Left" Margin="554,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

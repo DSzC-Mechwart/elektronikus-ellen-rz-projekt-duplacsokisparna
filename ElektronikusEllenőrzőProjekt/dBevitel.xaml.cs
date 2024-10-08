@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -32,18 +33,18 @@ namespace ElektronikusEllenőrzőProjekt
                 var resz = i.Split(";");
                 string nev = resz[0];
                 string szulhely = resz[1];
-                int szulido = Convert.ToInt32(resz[2]);
+                DateTime szulido = Convert.ToDateTime(resz[2]);
                 string anyanev = resz[3];
                 string lakcim = resz[4];
                 int naploszam = Convert.ToInt32(resz[5]);
                 DateTime beiratkozas = Convert.ToDateTime(resz[6]);
                 string szak = resz[7];
-                string oszatly = resz[8];
-                bool kollegista = Convert.ToBoolean(resz[9]);
+                string osztaly = resz[8];
+                string kollegista = resz[9];
                 string kollegium = resz[10];
                 int torszszam = Convert.ToInt32(resz[11]);
 
-                c_Read_Bevit x = new(nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, oszatly, kollegista, kollegium, torszszam);
+                c_Read_Bevit x = new(nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, osztaly, kollegista, kollegium, torszszam);
                 adatok.Add(x);
             }
         }
@@ -71,46 +72,57 @@ namespace ElektronikusEllenőrzőProjekt
         }
 
 
-        public void AdatFeltoltes()
+
+
+
+
+
+        private void cBevitMentes_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var i in adatok)
+            Console.WriteLine("igen");
+            File.WriteAllText("test.txt", String.Empty);
+
+            string Dnev = Ctnev.Text;
+            string Dszulhely = Cszulhely.Text;
+            DateTime Dszulido = Convert.ToDateTime(Cszulido.Text);
+            string Danyanev = Canya.Text;
+            string Dlakcim = Clakcim.Text;
+            int Dnaploszam = Convert.ToInt32(Cnaploszam.Text);
+            DateTime Dbeiratkozas = Convert.ToDateTime(Cbeirido.Text);
+            string Dszak = Cszak.Text;
+            string Dosztaly = Cosztaly.Text;
+            string Dkollegista = Ckollegista.IsChecked == true ? "Igen" : "Nem";
+            string Dkollegium = Ckollegium.Text;
+            int Dtorszszam = Convert.ToInt32(Ctorzsszam.Text);
+
+
+          
+            string line = "";
+            line = $"{Dnev}; {Dszulhely}; {Dszulhely}; {Danyanev}; {Dlakcim}; {Dnaploszam};" +
+                       $"{Dbeiratkozas}; {Dszak}; {Dosztaly}; {Dkollegista}; {Dkollegium}; {Dtorszszam}\n";    
+            MessageBox.Show(line);
+            string[] lines = line.Split(";");
+            foreach(var i in  lines)
             {
-                i.Nev = Ctnev.Text;
-                i.Szulhely = Cszulhely.Text;
-                i.Szulido = Convert.ToInt32(Cszulido.Text);
-                i.Anyanev = Canya.Text;
-                i.Lakcim = Clakcim.Text;
-                i.Naploszam = Convert.ToInt32(naploszam.Text);
-                i.Beiratkozas = Convert.ToDateTime(Cbeirido);
-                i.Szak = Cszak.Text;
-                i.Osztaly = Cosztaly.Text;
-                if(Ckollegista.IsChecked == false) { i.Kollegista = false; }
-                else if(Ckollegista.IsChecked == true) { i.Kollegista = true;}
-                if (Ckollegista.IsChecked == false) { i.Kollegium = ""; }
-                else if (Ckollegista.IsChecked == true) { i.Kollegium = Ckollegium.Text; }
-                i.Torszszam = Convert.ToInt32(Ctorzsszam.Text);
+                var resz = i.Split(";");
+                string nev = resz[0];
+                string szulhely = resz[1];
+                DateTime szulido = Convert.ToDateTime(resz[2]);
+                string anyanev = resz[3];
+                string lakcim = resz[4];
+                int naploszam = Convert.ToInt32(resz[5]);
+                DateTime beiratkozas = Convert.ToDateTime(resz[6]);
+                string szak = resz[7];
+                string osztaly = resz[8];
+                string kollegista = resz[9];
+                string kollegium = resz[10];
+                int torszszam = Convert.ToInt32(resz[11]);
+
+                c_Read_Bevit x = new(nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, osztaly, kollegista, kollegium, torszszam);
+                adatok.Add(x);
             }
-        }
-
-        public void WriteListToFile(string filepath)
-        {
-            AdatFeltoltes();
-            List<string> lines = new List<string>();
-
-            foreach (var item in adatok)
-            {
-                string line = $"{item.Nev};{item.Szulhely};{item.Szulido};{item.Anyanev};{item.Lakcim};" +
-                              $"{item.Naploszam};{item.Beiratkozas};{item.Szak};{item.Osztaly};" +
-                              $"{item.Kollegista};{item.Kollegium};{item.Torszszam}";
-                lines.Add(line);
-            }
-        }
-
-            private void cBevitMentes_Click(object sender, RoutedEventArgs e)
-        {
-            WriteListToFile("test.txt");
+            File.WriteAllText("test.txt", line);
             this.Close();
         }
-
     }
 }
