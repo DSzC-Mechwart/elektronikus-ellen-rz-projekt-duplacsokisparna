@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,21 +31,23 @@ namespace ElektronikusEllenőrzőProjekt
 
             foreach (var i in File.ReadAllLines(filepath))
             {
-                var resz = i.Split(";");
-                string nev = resz[0];
-                string szulhely = resz[1];
-                DateTime szulido = Convert.ToDateTime(resz[2]);
-                string anyanev = resz[3];
-                string lakcim = resz[4];
-                int naploszam = Convert.ToInt32(resz[5]);
-                DateTime beiratkozas = Convert.ToDateTime(resz[6]);
-                string szak = resz[7];
-                string osztaly = resz[8];
-                string kollegista = resz[9];
-                string kollegium = resz[10];
-                int torszszam = Convert.ToInt32(resz[11]);
 
-                c_Read_Bevit x = new(nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, osztaly, kollegista, kollegium, torszszam);
+                var resz = i.Split(";");
+                int id = Convert.ToInt32(resz[0]);
+                string nev = resz[1];
+                string szulhely = resz[2];
+                DateTime szulido = Convert.ToDateTime(resz[3]);
+                string anyanev = resz[4];
+                string lakcim = resz[5];
+                int naploszam = Convert.ToInt32(resz[6]);
+                DateTime beiratkozas = Convert.ToDateTime(resz[7]);
+                string szak = resz[8];
+                string osztaly = resz[9];
+                string kollegista = resz[10];
+                string kollegium = resz[11];
+                int torszszam = Convert.ToInt32(resz[12]);
+
+                c_Read_Bevit x = new(id, nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, osztaly, kollegista, kollegium, torszszam);
                 adatok.Add(x);
             }
         }
@@ -97,31 +100,6 @@ namespace ElektronikusEllenőrzőProjekt
 
 
           
-            string line = "";
-            line = $"{Dnev}; {Dszulhely}; {Dszulhely}; {Danyanev}; {Dlakcim}; {Dnaploszam};" +
-                       $"{Dbeiratkozas}; {Dszak}; {Dosztaly}; {Dkollegista}; {Dkollegium}; {Dtorszszam}\n";    
-            MessageBox.Show(line);
-            string[] lines = line.Split(";");
-            foreach(var i in  lines)
-            {
-                var resz = i.Split(";");
-                string nev = resz[0];
-                string szulhely = resz[1];
-                DateTime szulido = Convert.ToDateTime(resz[2]);
-                string anyanev = resz[3];
-                string lakcim = resz[4];
-                int naploszam = Convert.ToInt32(resz[5]);
-                DateTime beiratkozas = Convert.ToDateTime(resz[6]);
-                string szak = resz[7];
-                string osztaly = resz[8];
-                string kollegista = resz[9];
-                string kollegium = resz[10];
-                int torszszam = Convert.ToInt32(resz[11]);
-
-                c_Read_Bevit x = new(nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, osztaly, kollegista, kollegium, torszszam);
-                adatok.Add(x);
-            }
-            File.WriteAllText("test.txt", line);
             this.Close();
         }
     }
