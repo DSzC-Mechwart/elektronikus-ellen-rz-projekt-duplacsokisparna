@@ -19,9 +19,11 @@ namespace ElektronikusEllenőrzőProjekt
     /// </summary>
     public partial class KWindow : Window
     {
+        private List<Tantargyak> tantargyak;
         public KWindow()
         {
             InitializeComponent();
+            tantargyak = new List<Tantargyak>();
         }
 
     }
