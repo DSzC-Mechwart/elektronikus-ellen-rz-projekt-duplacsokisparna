@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="KWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="Kdatatable" Grid.Column="1" AutoGenerateColumns="True"/>
+        <StackPanel>
+            <WrapPanel Height="42" Width="399">
+                <Label x:Name="TantargyLabel" Content="Tantárgy:" Width="74" Margin="0,10,0,0"/>
+                <TextBox x:Name="Tantargy" TextWrapping="Wrap" Text="" Width="120" TextAlignment="Center" Margin="0,10,0,0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+            </WrapPanel>
+            <WrapPanel Height="43">
+                <Label x:Name="EvfolyamLabel" Content="Évfolyam:" Width="74" Margin="0,10,0,0"/>
+                <TextBox x:Name="Evfolyam" TextWrapping="Wrap" Text="" Width="120" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,10,0,0"/>
+            </WrapPanel>
+            <WrapPanel Height="40">
+                <CheckBox Content="Közismereti tantárgy" Margin="0,10,0,0"/>
+                <CheckBox Content="Szakmai tantárgy" Margin="10,10,0,0"/>
+            </WrapPanel>
+        </StackPanel>
+
     </Grid>
 </Window>

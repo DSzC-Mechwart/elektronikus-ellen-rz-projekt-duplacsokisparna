@@ -8,21 +8,19 @@ namespace ElektronikusEllenőrzőProjekt
 {
     internal class Tantargyak
     {
-        public Tantargyak(int id, string? tantargy, string? evfolyam, string? kozSzak, int hetiora, int evesora)
+        public Tantargyak(string tantargy, string evfolyam, string kozSzak, int hetiora, int evesora)
         {
-            Id = id;
-            Tantargy = tantargy;
-            Evfolyam = evfolyam;
-            KozSzak = kozSzak;
-            Hetiora = hetiora;
-            Evesora = evesora;
+            this.tantargy = tantargy;
+            this.evfolyam = evfolyam;
+            this.kozSzak = kozSzak;
+            this.hetiora = hetiora;
+            this.evesora = evesora;
         }
 
-        public int Id { get; set; }
-        public string? Tantargy { get; set; }
-        public string? Evfolyam { get; set; }
-        public string? KozSzak { get; set; }
-        public int Hetiora { get; set; }
-        public int Evesora { get; set; }
+        public string tantargy { get; set; }
+        public string evfolyam { get; set; }
+        public string kozSzak { get; set; }
+        public int hetiora { get; set; }
+        public int evesora { get; set; }
     }
 }
