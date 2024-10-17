@@ -5,7 +5,9 @@ using System.IO;
 using System.IO.Enumeration;
 using System.Linq;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -38,6 +40,19 @@ namespace ElektronikusEllenőrzőProjekt
                 string json = r.ReadToEnd();
                 tantargyak = JsonSerializer.Deserialize<List<Tantargyak>>(json);
             }
+        }
+        public void WriteJson()
+        {
+            var encoderSettings = new TextEncoderSettings();
+            encoderSettings.AllowCharacters('\u00F6', '\u00E1', '\u00E9'); // ö, á, é, betűk
+            encoderSettings.AllowRange(UnicodeRanges.BasicLatin);
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(encoderSettings),
+                WriteIndented = true
+            };
+            string json = JsonSerializer.Serialize(tantargyak, options);
+            File.WriteAllText("tantargyakK.json", json, Encoding.UTF8);
         }
 
         public void FillUpDataGrid()
@@ -75,13 +90,46 @@ namespace ElektronikusEllenőrzőProjekt
 
         private void Evfolyam_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Evfolyam.Text != null) { KozismTan.IsEnabled = true; SzakmaiTan.IsEnabled = true; }
+            KozismTan.IsEnabled = false;
+            SzakmaiTan.IsEnabled = false;
+
+            if (Evfolyam.Text != null) 
+            { 
+                if (Evfolyam.Text.Contains("9") || Evfolyam.Text.Contains("10") || Evfolyam.Text.Contains("11") || Evfolyam.Text.Contains("12") || Evfolyam.Text.Contains("13"))
+                {
+                    KozismTan.IsEnabled = true;
+                    SzakmaiTan.IsEnabled = true;
+                }
+            }
         }
 
         private void Hetioraszam_TextChanged(object sender, TextChangedEventArgs e)
         {
             Feltolt.IsEnabled = false;
             if (Hetioraszam.Text != null && CheckStrOrInt(Hetioraszam.Text) == "int") { Feltolt.IsEnabled = true; }
+        }
+        private void Feltolt_Click(object sender, RoutedEventArgs e)
+        {
+            string ujTantargy = Tantargy.Text;
+            string evfolyam = Evfolyam.Text;
+            string kozSzakTan = "";
+            if (KozismTan.IsChecked == true) { kozSzakTan = "közismereti"; }
+            if (SzakmaiTan.IsChecked == true) { kozSzakTan = "szakmai"; }
+            int hetiOra = Convert.ToInt32(Hetioraszam.Text);
+            int evesOra = GenerateYearlyLessons(evfolyam, kozSzakTan, hetiOra);
+
+            tantargyak.Add(new Tantargyak(ujTantargy, evfolyam, kozSzakTan, hetiOra, evesOra));
+            WriteJson();
+            FillUpDataGrid();
+            ClearUI();
+        }
+        private void Kdatatable_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tantargyTorles.IsEnabled = true;
+        }
+        private void tantargyTorles_Click(object sender, RoutedEventArgs e)
+        {
+            //A törlésnél hagytam abba.
         }
 
         private string CheckStrOrInt(string str)
@@ -95,5 +143,29 @@ namespace ElektronikusEllenőrzőProjekt
             }
             return "int";
         }
+
+        private int GenerateYearlyLessons(string evfolyam, string kozSzak, int hetiOra)
+        {
+            if (evfolyam.Contains("9") || evfolyam.Contains("10") || evfolyam.Contains("11")) {  return hetiOra * 36; }
+            if (evfolyam.Contains("12") && kozSzak == "közismereti") { return hetiOra * 31; }
+            if (evfolyam.Contains("12") && kozSzak == "szakmai") { return hetiOra * 36; }
+            if (evfolyam.Contains("13")) { return hetiOra * 31; }
+            else { return 0; }
+        }
+
+        private void ClearUI()
+        {
+            Tantargy.Clear();
+            Evfolyam.Clear();
+            Evfolyam.IsEnabled = false;
+            KozismTan.IsChecked = false;
+            KozismTan.IsEnabled = false;
+            SzakmaiTan.IsChecked = false;
+            SzakmaiTan.IsEnabled = false;
+            Hetioraszam.Clear();
+            Hetioraszam.IsEnabled = false;
+        }
+
+        
     }
 }
