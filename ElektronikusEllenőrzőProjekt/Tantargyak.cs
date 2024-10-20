@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ElektronikusEllenőrzőProjekt
 {
-    internal class Tantargyak
+    public class Tantargyak
     {
         public Tantargyak(string tantargy, string evfolyam, string kozSzak, int hetiora, int evesora)
         {

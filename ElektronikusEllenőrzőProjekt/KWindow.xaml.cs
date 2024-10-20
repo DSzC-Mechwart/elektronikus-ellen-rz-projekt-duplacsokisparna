@@ -27,7 +27,7 @@ namespace ElektronikusEllenőrzőProjekt
     /// </summary>
     public partial class KWindow : Window
     {
-        private List<Tantargyak> tantargyak = new List<Tantargyak>();
+        public static List<Tantargyak> tantargyak = new List<Tantargyak>();
         public KWindow()
         {
             InitializeComponent();
@@ -200,6 +200,22 @@ namespace ElektronikusEllenőrzőProjekt
             Hetioraszam.IsEnabled = false;
         }
 
-        
+        private void Admin_Click(object sender, RoutedEventArgs e)
+        {
+            var data = tantargyak.GroupBy(x => x.evfolyam)
+                .Select(x => new
+                {
+                    ev = x.Key,
+                    szakmaiOra = x.Count(y => y.kozSzak == "szakmai"),
+                    kozismeretiOra = x.Count(y => y.kozSzak == "közismereti"),
+                    szakmaiOraSzam = x.Sum(y => y.evesora * (y.kozSzak == "szakmai" ? 1 : 0)),
+                    kozismeretiOraSzam = x.Sum(y => y.evesora * (y.kozSzak == "közismereti" ? 1 : 0)),
+                    osszOra = x.Sum(y => y.evesora)
+                })
+                .OrderByDescending(x => x.ev);
+
+            kAdminTable.ItemsSource = null;
+            kAdminTable.ItemsSource = data;
+        }
     }
 }
