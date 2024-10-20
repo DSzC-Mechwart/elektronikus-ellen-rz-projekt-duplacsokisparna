@@ -17,6 +17,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CsvHelper;
+using System.Globalization;
 
 namespace ElektronikusEllenőrzőProjekt
 {
@@ -37,8 +39,11 @@ namespace ElektronikusEllenőrzőProjekt
         {
             using (StreamReader r = new StreamReader("tantargyakK.json"))
             {
-                string json = r.ReadToEnd();
-                tantargyak = JsonSerializer.Deserialize<List<Tantargyak>>(json);
+                if (r != null)
+                {
+                    string json = r.ReadToEnd();
+                    tantargyak = JsonSerializer.Deserialize<List<Tantargyak>>(json);
+                }
             }
         }
         public void WriteJson()
@@ -53,6 +58,25 @@ namespace ElektronikusEllenőrzőProjekt
             };
             string json = JsonSerializer.Serialize(tantargyak, options);
             File.WriteAllText("tantargyakK.json", json, Encoding.UTF8);
+        }
+
+        public void WriteCsv()
+        {
+            using (var writer = new StreamWriter("tantargyakK.csv"))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteHeader<Tantargyak>();
+                foreach (var x in tantargyak)
+                {
+                    csv.NextRecord();
+                    csv.WriteField(x.tantargy);
+                    csv.WriteField(x.evfolyam);
+                    csv.WriteField(x.kozSzak);
+                    csv.WriteField(x.hetiora);
+                    csv.WriteField(x.evesora);
+                }
+                
+            }
         }
 
         public void FillUpDataGrid()
@@ -120,6 +144,7 @@ namespace ElektronikusEllenőrzőProjekt
 
             tantargyak.Add(new Tantargyak(ujTantargy, evfolyam, kozSzakTan, hetiOra, evesOra));
             WriteJson();
+            WriteCsv();
             FillUpDataGrid();
             ClearUI();
         }
@@ -129,7 +154,16 @@ namespace ElektronikusEllenőrzőProjekt
         }
         private void tantargyTorles_Click(object sender, RoutedEventArgs e)
         {
-            //A törlésnél hagytam abba.
+            var remove = Kdatatable.SelectedItem as Tantargyak;
+            if (remove != null)
+            {
+                tantargyak.Remove(remove);
+            }
+            WriteJson();
+            WriteCsv();
+            ReadIn();
+            FillUpDataGrid();
+            tantargyTorles.IsEnabled = false;
         }
 
         private string CheckStrOrInt(string str)
