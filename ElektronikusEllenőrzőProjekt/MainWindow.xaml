@@ -5,17 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElektronikusEllenőrzőProjekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid>
         <Grid>
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF6BB0E5" Offset="1"/>
+                    <GradientStop Color="White" Offset="0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="david" Content="Dávid" Height="41" Width="112" Click="david_Click"/>
-            <Button x:Name="kende" Grid.Column="1" Content="Kende" Height="41" Width="112" Click="kende_Click"/>
-            <Button x:Name="kristof" Grid.Column="2" Content="Kristóf" Height="41" Width="112" Click="kristof_Click"/>
+            <Button x:Name="david" Content="Tanuló adat bevitele" Height="41" Width="112" Click="david_Click" Background="#FFD3FFF7" BorderBrush="#FFFFF000"/>
+            <Button x:Name="kende" Grid.Column="1" Content="Tantárgyak szerkesztése" Click="kende_Click" Margin="58,188,58,188" Background="#FFD3FFF7" BorderBrush="#FFFFF000"/>
+            <Button x:Name="kristof" Grid.Column="2" Content="Bejelentkezés" Height="41" Width="112" Click="kristof_Click" Background="#FFD3FFF7" BorderBrush="#FFFFF000"/>
         </Grid>
 
     </Grid>
