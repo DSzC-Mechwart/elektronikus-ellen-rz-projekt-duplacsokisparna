@@ -37,7 +37,7 @@ namespace ElektronikusEllenőrzőProjekt
         }
 
 
-        static void writeCsv (List<c_Read_Bevit> list, string filePath)
+        public void writeCsv (List<c_Read_Bevit> list, string filePath)
         {
             using (StreamWriter sw = new StreamWriter(filePath))
             {
@@ -57,6 +57,7 @@ namespace ElektronikusEllenőrzőProjekt
         { 
             InitializeComponent();
             Beolvas();
+            
             Ckollegium.IsEnabled = false;
         }
 
@@ -83,7 +84,7 @@ namespace ElektronikusEllenőrzőProjekt
         {
           
 
-            int koli = Ckollegista.IsChecked == false ? 0 : 1;
+            string koli = Ckollegista.IsChecked == false ? "igen" : "Nem";
 
             string line = $"{Ctnev.Text};{Cszulhely.Text};{Cszulido.Text};{Canya.Text};{Clakcim.Text};1;{Cbeirido.Text};{Cszak.Text};{Cosztaly.Text};{koli};{Ckollegium.Text}; vmi";
 
@@ -101,7 +102,7 @@ namespace ElektronikusEllenőrzőProjekt
                 DateTime beirido = string.IsNullOrEmpty(resz[6]) ? DateTime.MinValue : Convert.ToDateTime(resz[6]);
                 string szak = resz[7];
                 string osztaly = resz[8];
-                int kolis = Convert.ToInt32(resz[9]);
+                string kolis = resz[9];
                 string kollegium = resz[10];
                 string torzsszam =resz[11]; 
 

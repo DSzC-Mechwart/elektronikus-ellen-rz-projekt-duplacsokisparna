@@ -24,22 +24,9 @@ namespace ElektronikusEllenőrzőProjekt
     {
         List<c_Read_Bevit> adatok;
 
-        static void writeCsv(List<c_Read_Bevit> list, string filePath)
-        {
-            using (StreamWriter sw = new StreamWriter(filePath))
-            {
-                
-                sw.WriteLine("Nev,SzulHely,SzulIdo,Anyjanev,Lakcim,BeirIdo,Szak,Osztaly,Kolise,Koli,Naploszam,Torzsszam");
+        dBevitel fgv = new dBevitel();
 
-                
-                foreach (var item in list)
-                {
-                    sw.WriteLine($"{item.nev},{item.szulHely},{item.szulIdo.ToShortDateString()},{item.anyjanev},{item.lakcim},{item.beirIdo.ToShortDateString()},{item.szak},{item.osztaly},{item.kolise},{item.koli},{item.naploszam},{item.torzsszam}");
-                }
-            }
-        }
-
-            public void Beolvas()
+        public void Beolvas()
         {
             using (StreamReader r = new StreamReader("test.json"))
             {
@@ -53,34 +40,34 @@ namespace ElektronikusEllenőrzőProjekt
         {
             InitializeComponent();
             Beolvas();
-            Megjelenit();
+            Megjelenit(); 
         }
 
         public void Megjelenit()
         {
 
-            var grouped = adatok.GroupBy(x => x.osztaly);
+            var osztaly = adatok.GroupBy(x => x.osztaly);
 
-            foreach (var group in grouped)
+            foreach (var item in osztaly)
             {
 
-                var sortedGroup = group
+                var osztalyok  = item
                     .Where(x => x.beirIdo.Month < 9)
                     .OrderBy(x => x.nev)
-                    .Concat(group.Where(x => x.beirIdo.Month >= 9).OrderBy(x => x.beirIdo));
+                    .Concat(item.Where(x => x.beirIdo.Month >= 9).OrderBy(x => x.beirIdo));
 
 
-                int serialNumber = 1;
-                foreach (var item in sortedGroup)
+                int naplo = 1;
+                foreach (var i in osztalyok)
                 {
-                    item.naploszam = serialNumber;
-                    serialNumber++;
+                    i.naploszam = naplo;
+                    naplo++;
                 }
 
 
                 string jsonString = JsonSerializer.Serialize(adatok);
                 File.WriteAllText("test.json", jsonString);
-                writeCsv(adatok, "test.csv");
+                fgv.writeCsv(adatok, "test.csv");
             }
 
 
@@ -106,7 +93,7 @@ namespace ElektronikusEllenőrzőProjekt
                 File.WriteAllText("test.json", jsonString);
                 
                 Beolvas();
-                writeCsv(adatok, "test.csv");
+                fgv.writeCsv(adatok, "test.csv");
 
             }
             this.datas.ItemsSource = adatok;

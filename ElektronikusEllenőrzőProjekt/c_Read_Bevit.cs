@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ElektronikusEllenőrzőProjekt
 {
-    internal class c_Read_Bevit
+    public class c_Read_Bevit
     {
-        public c_Read_Bevit(string nev, string szulHely, DateTime szulIdo, string anyjanev, string lakcim, DateTime beirIdo, string szak, string osztaly, int kolise, string koli, int naploszam, string torzsszam)
+        public c_Read_Bevit(string nev, string szulHely, DateTime szulIdo, string anyjanev, string lakcim, DateTime beirIdo, string szak, string osztaly, string kolise, string koli, int naploszam, string torzsszam)
         {
             this.nev = nev;
             this.szulHely = szulHely;
@@ -34,7 +34,7 @@ namespace ElektronikusEllenőrzőProjekt
         public DateTime beirIdo { get; set; }
         public string szak { get; set; }
         public string osztaly { get; set; }
-        public int kolise { get; set; }
+        public string kolise { get; set; }
         public string koli { get; set; }
         public int naploszam { get; set; }
         public string torzsszam { get; set; }

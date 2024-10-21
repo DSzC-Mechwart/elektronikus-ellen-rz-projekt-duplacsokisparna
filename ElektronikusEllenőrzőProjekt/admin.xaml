@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="Title" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Margin="259,10,0,0" HorizontalAlignment="Left"><Run Language="hu-hu" FontWeight="Bold" Text="Tanulók"/><LineBreak/><Run Language="hu-hu"/></TextBlock>
         <DataGrid x:Name="datas" Background="LightBlue" AutoGenerateColumns="True" Margin="0,50,0,0"/>
-        <Button x:Name="delete" Content="Törlés" HorizontalAlignment="Left" Margin="0,17,0,0" VerticalAlignment="Top" Click="delete_Click"/>
+        <Button x:Name="delete" Content="Törlés" HorizontalAlignment="Left" Margin="7,17,0,0" VerticalAlignment="Top" Click="delete_Click" Width="71"/>
 
     </Grid>
 </Window>
