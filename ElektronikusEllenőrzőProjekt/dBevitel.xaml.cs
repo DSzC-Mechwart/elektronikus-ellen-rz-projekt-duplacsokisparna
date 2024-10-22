@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Text.Json;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace ElektronikusEllenőrzőProjekt
 {
@@ -24,34 +27,37 @@ namespace ElektronikusEllenőrzőProjekt
     {
         List<c_Read_Bevit> adatok;
 
-        public void Beolvas(string filepath)
+        public void Beolvas()
         {
-            adatok = new List<c_Read_Bevit>();
-
-            foreach (var i in File.ReadAllLines(filepath))
+            using (StreamReader r = new StreamReader("test.json"))
             {
-                var resz = i.Split(";");
-                string nev = resz[0];
-                string szulhely = resz[1];
-                DateTime szulido = Convert.ToDateTime(resz[2]);
-                string anyanev = resz[3];
-                string lakcim = resz[4];
-                int naploszam = Convert.ToInt32(resz[5]);
-                DateTime beiratkozas = Convert.ToDateTime(resz[6]);
-                string szak = resz[7];
-                string osztaly = resz[8];
-                string kollegista = resz[9];
-                string kollegium = resz[10];
-                int torszszam = Convert.ToInt32(resz[11]);
-
-                c_Read_Bevit x = new(nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, osztaly, kollegista, kollegium, torszszam);
-                adatok.Add(x);
+                string json = r.ReadToEnd();
+                adatok = JsonSerializer.Deserialize<List<c_Read_Bevit>>(json);
             }
         }
-        public dBevitel()
+
+
+        public void writeCsv (List<c_Read_Bevit> list, string filePath)
         {
-            Beolvas("test.txt");
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+
+                sw.WriteLine("Nev,SzulHely,SzulIdo,Anyjanev,Lakcim,BeirIdo,Szak,Osztaly,Kolise,Koli,Naploszam,Torzsszam");
+
+
+                foreach (var item in list)
+                {
+                    sw.WriteLine($"{item.nev},{item.szulHely},{item.szulIdo.ToShortDateString()},{item.anyjanev},{item.lakcim},{item.beirIdo.ToShortDateString()},{item.szak},{item.osztaly},{item.kolise},{item.koli},{item.naploszam},{item.torzsszam}");
+                }
+            }
+
+        }
+
+            public dBevitel()
+        { 
             InitializeComponent();
+            Beolvas();
+            
             Ckollegium.IsEnabled = false;
         }
 
@@ -74,55 +80,52 @@ namespace ElektronikusEllenőrzőProjekt
 
 
 
-
-
-
         private void cBevitMentes_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("igen");
-            File.WriteAllText("test.txt", String.Empty);
-
-            string Dnev = Ctnev.Text;
-            string Dszulhely = Cszulhely.Text;
-            DateTime Dszulido = Convert.ToDateTime(Cszulido.Text);
-            string Danyanev = Canya.Text;
-            string Dlakcim = Clakcim.Text;
-            int Dnaploszam = Convert.ToInt32(Cnaploszam.Text);
-            DateTime Dbeiratkozas = Convert.ToDateTime(Cbeirido.Text);
-            string Dszak = Cszak.Text;
-            string Dosztaly = Cosztaly.Text;
-            string Dkollegista = Ckollegista.IsChecked == true ? "Igen" : "Nem";
-            string Dkollegium = Ckollegium.Text;
-            int Dtorszszam = Convert.ToInt32(Ctorzsszam.Text);
-
-
           
-            string line = "";
-            line = $"{Dnev}; {Dszulhely}; {Dszulhely}; {Danyanev}; {Dlakcim}; {Dnaploszam};" +
-                       $"{Dbeiratkozas}; {Dszak}; {Dosztaly}; {Dkollegista}; {Dkollegium}; {Dtorszszam}\n";    
-            MessageBox.Show(line);
-            string[] lines = line.Split(";");
-            foreach(var i in  lines)
+
+            string koli = Ckollegista.IsChecked == false ? "igen" : "Nem";
+
+            string line = $"{Ctnev.Text};{Cszulhely.Text};{Cszulido.Text};{Canya.Text};{Clakcim.Text};1;{Cbeirido.Text};{Cszak.Text};{Cosztaly.Text};{koli};{Ckollegium.Text}; vmi";
+
+            var resz = line.Split(";");
+
+            try
             {
-                var resz = i.Split(";");
-                string nev = resz[0];
-                string szulhely = resz[1];
-                DateTime szulido = Convert.ToDateTime(resz[2]);
-                string anyanev = resz[3];
+
+                string cnev = resz[0];
+                string cszulhely = resz[1];
+                DateTime cszulido = string.IsNullOrEmpty(resz[2]) ? DateTime.MinValue : Convert.ToDateTime(resz[2]);  
+                string anya = resz[3];
                 string lakcim = resz[4];
-                int naploszam = Convert.ToInt32(resz[5]);
-                DateTime beiratkozas = Convert.ToDateTime(resz[6]);
+                int naploszam = string.IsNullOrEmpty(resz[5]) ? 0 : Convert.ToInt32(resz[5]);  
+                DateTime beirido = string.IsNullOrEmpty(resz[6]) ? DateTime.MinValue : Convert.ToDateTime(resz[6]);
                 string szak = resz[7];
                 string osztaly = resz[8];
-                string kollegista = resz[9];
+                string kolis = resz[9];
                 string kollegium = resz[10];
-                int torszszam = Convert.ToInt32(resz[11]);
+                string torzsszam =resz[11]; 
 
-                c_Read_Bevit x = new(nev, szulhely, szulido, anyanev, lakcim, naploszam, beiratkozas, szak, osztaly, kollegista, kollegium, torszszam);
-                adatok.Add(x);
+                
+                adatok.Add(new c_Read_Bevit(cnev, cszulhely, cszulido, anya, lakcim,  beirido, szak, osztaly, kolis, kollegium,naploszam, torzsszam));
+
+                
+                
+                string jsonString = JsonSerializer.Serialize(adatok);
+                File.WriteAllText("test.json", jsonString);
+
+                writeCsv(adatok, "test.csv");
+
+                MessageBox.Show("Adatok sikeresen el vannak mentve!");
             }
-            File.WriteAllText("test.txt", line);
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hiba történt: " + ex.Message);
+            }
+
+
             this.Close();
         }
+
     }
 }

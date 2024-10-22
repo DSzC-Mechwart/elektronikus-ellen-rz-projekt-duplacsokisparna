@@ -8,37 +8,36 @@ using System.Threading.Tasks;
 
 namespace ElektronikusEllenőrzőProjekt
 {
-    internal class c_Read_Bevit
+    public class c_Read_Bevit
     {
-        public c_Read_Bevit(string nev, string szulhely, DateTime szulido, string anyanev, string lakcim, int naploszam, DateTime beiratkozas, string szak, string osztaly, 
-          string  kollegista, string kollegium, int torszszam)
+        public c_Read_Bevit(string nev, string szulHely, DateTime szulIdo, string anyjanev, string lakcim, DateTime beirIdo, string szak, string osztaly, string kolise, string koli, int naploszam, string torzsszam)
         {
-            Nev = nev;
-            Szulhely = szulhely;
-            Szulido = szulido;
-            Anyanev = anyanev;
-            Lakcim = lakcim;
-            Naploszam = naploszam;
-            Beiratkozas = beiratkozas;
-            Szak = szak;
-            Osztaly = osztaly;
-            Kollegista = kollegista;
-            Kollegium = kollegium;
-            Torszszam = torszszam;
+            this.nev = nev;
+            this.szulHely = szulHely;
+            this.szulIdo = szulIdo;
+            this.anyjanev = anyjanev;
+            this.lakcim = lakcim;
+            this.beirIdo = beirIdo;
+            this.szak = szak;
+            this.osztaly = osztaly;
+            this.kolise = kolise;
+            this.koli = koli;
+            this.naploszam = naploszam;
+            this.torzsszam = torzsszam;
         }
 
-        public string Nev { get; set; }
-        public string Szulhely { get; set; }
-        public DateTime Szulido { get; set; }
-        public string Anyanev { get; set; } 
-        public string Lakcim { get; set; }
-        public int Naploszam {get; set; }
-        public DateTime Beiratkozas { get; set; }
-        public string Szak { get; set; }    
-        public string Osztaly { get; set; }
-        public string Kollegista { get; set; }
-        public string Kollegium { get; set; }
-        public int Torszszam { get; set; }
+        public string nev { get; set; }
+        public string szulHely { get; set; }
+        public DateTime szulIdo { get; set; }
+        public string anyjanev { get; set; }
+        public string lakcim { get; set; }
+        public DateTime beirIdo { get; set; }
+        public string szak { get; set; }
+        public string osztaly { get; set; }
+        public string kolise { get; set; }
+        public string koli { get; set; }
+        public int naploszam { get; set; }
+        public string torzsszam { get; set; }
 
     }
 }

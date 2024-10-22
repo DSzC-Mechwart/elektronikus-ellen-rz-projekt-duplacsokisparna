@@ -19,6 +19,8 @@ namespace ElektronikusEllenőrzőProjekt
     /// </summary>
     public partial class DWindow : Window
     {
+
+        List<c_Read_Bevit> data;
         public DWindow()
         {
             InitializeComponent();
@@ -28,6 +30,12 @@ namespace ElektronikusEllenőrzőProjekt
         {
             dBevitel win = new dBevitel();
             win.Show();
+        }
+
+        private void cAdmin_Click(object sender, RoutedEventArgs e)
+        {
+           admin admin = new admin();
+            admin.Show();
         }
     }
 }
