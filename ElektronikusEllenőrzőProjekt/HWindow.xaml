@@ -12,7 +12,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button Content="Bejelentkezés" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="75" Width="200" FontSize="24" FontFamily="Bahnschrift" Click="Button_Click"/>
-        <PasswordBox HorizontalAlignment="Right" VerticalAlignment="Center" Width="120" Margin="0,0,200,0"/>
+        <PasswordBox x:Name="HPass" HorizontalAlignment="Right" VerticalAlignment="Center" Width="120" Margin="0,0,200,0"/>
         <TextBox x:Name="HFN" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" Margin="200,0,0,0"/>
         <Label Content="Jelszó" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20" Width="150" Height="32" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,30,180,0"/>
         <Label Content="Felhasználó név" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" Width="150" Height="40" Margin="180,30,0,0"/>
