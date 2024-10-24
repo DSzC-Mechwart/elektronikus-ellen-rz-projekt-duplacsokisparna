@@ -34,18 +34,28 @@ namespace ElektronikusEllenőrzőProjekt
                 adatok = JsonSerializer.Deserialize<List<c_Read_Bevit>>(json);
             }
         }
-
+        int bejaros;
+        int kollegista;
+        int infos;
+        int gepesz;
 
         public admin()
         {
             InitializeComponent();
+            bejaros = 0;
+            kollegista = 0;
+            infos = 0;
+            gepesz = 0;
             Beolvas();
             Megjelenit(); 
         }
 
         public void Megjelenit()
         {
-
+            bejaros = 0;
+            kollegista = 0;
+            infos = 0;
+            gepesz = 0;
             var osztaly = adatok.GroupBy(x => x.osztaly);
 
             foreach (var item in osztaly)
@@ -69,7 +79,7 @@ namespace ElektronikusEllenőrzőProjekt
                 File.WriteAllText("test.json", jsonString);
                 fgv.writeCsv(adatok, "test.csv");
             }
-
+             
 
             for (int i = 0; i < adatok.Count; i++)
             {
@@ -77,7 +87,16 @@ namespace ElektronikusEllenőrzőProjekt
                 adatok[i].torzsszam = $"{honap}/{adatok[i].naploszam}";
             }
 
-            
+            foreach (var item in adatok)
+            {
+                if (item.kolise.ToLower() == "igen") { kollegista++; } else { bejaros++; }
+                if (item.szak.ToLower() == "informatika") { infos++; } else { gepesz++; }
+            }
+
+            kolista.Text = $"Kollégista: {kollegista}";
+            bejar.Text = $"Bejárós: {bejaros}";
+            infost.Text = $"Informatikus: {infos}";
+            gepssz.Text = $"Gépész: {gepesz}";
 
             this.datas.ItemsSource = adatok;
         }
@@ -88,15 +107,42 @@ namespace ElektronikusEllenőrzőProjekt
 
             if (selectedItem != null)
             {
-                adatok.Remove(selectedItem);
-                string jsonString = JsonSerializer.Serialize(adatok);
-                File.WriteAllText("test.json", jsonString);
-                
-                Beolvas();
-                fgv.writeCsv(adatok, "test.csv");
 
+                MessageBoxResult valasz = MessageBox.Show("Adat törlése", "Biztos benne?", MessageBoxButton.YesNo);
+                if (valasz == MessageBoxResult.Yes)
+                {
+                    adatok.Remove(selectedItem);
+
+                    bejaros = 0;
+                    kollegista = 0;
+                    infos = 0;
+                    gepesz = 0;
+
+                    foreach (var item in adatok)
+                    {
+                        if (item.kolise.ToLower() == "igen") { kollegista++; } else { bejaros++; }
+                        if (item.szak.ToLower() == "informatika") { infos++; } else { gepesz++; }
+                    }
+
+                    kolista.Text = $"Kollégista: {kollegista}";
+                    bejar.Text = $"Bejárós: {bejaros}";
+                    infost.Text = $"Informatikus: {infos}";
+                    gepssz.Text = $"Gépész: {gepesz}";
+
+
+                    string jsonString = JsonSerializer.Serialize(adatok);
+                    File.WriteAllText("test.json", jsonString);
+
+                    Beolvas();
+                    fgv.writeCsv(adatok, "test.csv");
+                }
             }
             this.datas.ItemsSource = adatok;
+        }
+
+        private void vissza_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

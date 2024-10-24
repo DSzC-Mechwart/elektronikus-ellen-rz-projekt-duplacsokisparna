@@ -37,5 +37,10 @@ namespace ElektronikusEllenőrzőProjekt
            admin admin = new admin();
             admin.Show();
         }
+
+        private void cVissza_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

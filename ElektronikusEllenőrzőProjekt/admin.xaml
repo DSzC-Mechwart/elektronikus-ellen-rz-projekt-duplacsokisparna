@@ -5,17 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ElektronikusEllenőrzőProjekt"
         mc:Ignorable="d"
-        Title="admin" Height="auto" Width="auto">
+        Title="admin" Height="auto" Width="auto" ResizeMode="NoResize">
     <Grid Background="LightBlue">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="1900"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="Title" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Margin="259,10,0,0" HorizontalAlignment="Left"><Run Language="hu-hu" FontWeight="Bold" Text="Tanulók"/><LineBreak/><Run Language="hu-hu"/></TextBlock>
-        <DataGrid x:Name="datas" Background="LightBlue" AutoGenerateColumns="True" Margin="0,50,0,0"/>
-        <Button x:Name="delete" Content="Törlés" HorizontalAlignment="Left" Margin="7,17,0,0" VerticalAlignment="Top" Click="delete_Click" Width="71"/>
+        <TextBlock x:Name="Title" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Margin="259,0,0,0" HorizontalAlignment="Left"><Run Language="hu-hu" FontWeight="Bold" Text="Tanulók"/><LineBreak/><Run Language="hu-hu"/></TextBlock>
+        <DataGrid x:Name="datas" Background="LightBlue" AutoGenerateColumns="True" Margin="0,64,0,-14" HorizontalAlignment="Center" Width="auto"/>
+        <Button x:Name="delete" Content="Törlés" HorizontalAlignment="Left" Margin="7,17,0,0" VerticalAlignment="Top" Click="delete_Click" Width="71" Height="20"/>
+        <TextBlock x:Name="bejar" HorizontalAlignment="Left" Margin="90,17,0,0" TextWrapping="Wrap" Text="Bejárós: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="kolista" HorizontalAlignment="Left" Margin="90,0,0,0" TextWrapping="Wrap" Text="Kollégista: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="infost" HorizontalAlignment="Left" Margin="90,48,0,0" TextWrapping="Wrap" Text="Informatikus: " VerticalAlignment="Top"/>
+        <TextBlock x:Name="gepssz" HorizontalAlignment="Left" Margin="90,33,0,0" TextWrapping="Wrap" Text="gepesz:" VerticalAlignment="Top"/>
+        <Button x:Name="vissza" Content="Vissza" HorizontalAlignment="Left" Margin="7,48,0,0" VerticalAlignment="Top" Width="71" Height="20" Click="vissza_Click"/>
 
     </Grid>
 </Window>

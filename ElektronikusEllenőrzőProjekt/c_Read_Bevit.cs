@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace ElektronikusEllenőrzőProjekt
 {
     public class c_Read_Bevit
     {
+
         public c_Read_Bevit(string nev, string szulHely, DateTime szulIdo, string anyjanev, string lakcim, DateTime beirIdo, string szak, string osztaly, string kolise, string koli, int naploszam, string torzsszam)
         {
             this.nev = nev;

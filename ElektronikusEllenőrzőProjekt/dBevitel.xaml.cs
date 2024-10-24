@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.InteropServices.ComTypes;
+using System.Diagnostics.Eventing.Reader;
 
 namespace ElektronikusEllenőrzőProjekt
 {
@@ -82,9 +83,9 @@ namespace ElektronikusEllenőrzőProjekt
 
         private void cBevitMentes_Click(object sender, RoutedEventArgs e)
         {
-          
+            
 
-            string koli = Ckollegista.IsChecked == false ? "igen" : "Nem";
+            string koli = Ckollegista.IsChecked == false ? "Nem"  : "Igen";
 
             string line = $"{Ctnev.Text};{Cszulhely.Text};{Cszulido.Text};{Canya.Text};{Clakcim.Text};1;{Cbeirido.Text};{Cszak.Text};{Cosztaly.Text};{koli};{Ckollegium.Text}; vmi";
 

@@ -5,13 +5,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:ElektronikusEllenőrzőProjekt"
     mc:Ignorable="d"
-    Title="CMainWindow" Height="450" Width="800" Background="LightBlue">
+    Title="CMainWindow" Height="450" Width="800" Background="LightBlue" ResizeMode="NoResize">
 <Grid>
     <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Content="Admin"  x:Name="cAdmin" HorizontalAlignment="Left" Margin="640,370,0,0" VerticalAlignment="Top" Height="40" Width="90" Click="cAdmin_Click"/>
-        <Button x:Name="cVissza" Content="Vissza" HorizontalAlignment="Left" Margin="70,370,0,0" VerticalAlignment="Top" Height="38" Width="90"/>
+        <Button x:Name="cVissza" Content="Vissza" HorizontalAlignment="Left" Margin="70,370,0,0" VerticalAlignment="Top" Height="38" Width="90" Click="cVissza_Click"/>
         <Button x:Name="cBevitel" Content="Tanulói adatok bevitele" HorizontalAlignment="Center" Margin="0,126,0,0" VerticalAlignment="Top" Width="208" Height="50" FontSize="18" Click="cBevitel_Click"/>
         <TextBlock TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Height="26" FontSize="20" FontWeight="Bold" Margin="0,19,0,0"><Run Text="Rotring Elektroniku"/><Run Language="hu-hu" Text="s Ellenőrző"/><LineBreak/><Run Language="hu-hu"/><Run Text=" Ellenőrző"/></TextBlock>
     </Grid>
